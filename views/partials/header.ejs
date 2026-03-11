@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raider Test Store</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container">
+        <div class="header-top-left">
+          <a href="/" class="logo">Raider Test Store</a>
+        </div>
+        <div class="header-top-right">
+          <div id="customer_menu_top" class="customer-menu">
+            <% if (user) { %>
+              <span class="welcome-msg">Welcome back <%= user.name %></span>
+              <a href="/index.php?rt=account/account">Account</a>
+              <a href="/index.php?rt=account/logout">Logout</a>
+            <% } else { %>
+              <span class="welcome-msg">Login or register</span>
+              <a href="/index.php?rt=account/login">Login</a>
+            <% } %>
+          </div>
+          <div class="cart-summary">
+            <a href="#" class="cart-link">Cart: 0 items</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="container">
+        <ul class="nav-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/?category=Apparel">Apparel & Accessories</a></li>
+          <li><a href="/?category=Makeup">Makeup</a></li>
+          <li><a href="/?category=Skincare">Skincare</a></li>
+          <li><a href="/?category=Fragrance">Fragrance</a></li>
+          <li><a href="/?category=Men">Men</a></li>
+          <li><a href="/?category=Hair Care">Hair Care</a></li>
+          <li><a href="/?category=Books">Books</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main class="container main-content">

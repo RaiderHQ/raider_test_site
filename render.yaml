@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: raider-test-site
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: SESSION_SECRET
+        generateValue: true

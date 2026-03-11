@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Skinsheen Bronzer Stick",
+    "price": 29.50,
+    "category": "Makeup",
+    "description": "A smooth, blendable bronzer stick that gives your skin a sun-kissed glow. Perfect for contouring and highlighting.",
+    "image": "bronzer.svg"
+  },
+  {
+    "id": 2,
+    "name": "BeneFit Girl Meets Pearl",
+    "price": 19.00,
+    "category": "Makeup",
+    "description": "A luminizing face primer that brightens and enhances your complexion with a subtle pearl finish.",
+    "image": "pearl.svg"
+  },
+  {
+    "id": 3,
+    "name": "Absolute Anti-Age Spot Replenishing Unifying Treatment",
+    "price": 42.00,
+    "category": "Skincare",
+    "description": "Advanced anti-aging treatment that targets dark spots and uneven skin tone for a more youthful appearance.",
+    "image": "treatment.svg"
+  },
+  {
+    "id": 4,
+    "name": "Casual 3/4 Sleeve Baseball T-Shirt",
+    "price": 14.00,
+    "category": "Apparel",
+    "description": "Comfortable and stylish baseball-style t-shirt with 3/4 length sleeves. Perfect for casual everyday wear.",
+    "image": "tshirt.svg"
+  },
+  {
+    "id": 5,
+    "name": "Designer Men Casual Formal Double Cuffs Grandad Shirt",
+    "price": 26.00,
+    "category": "Men",
+    "description": "Elegant grandad collar shirt with double cuffs. Suitable for both casual and semi-formal occasions.",
+    "image": "shirt.svg"
+  },
+  {
+    "id": 6,
+    "name": "ck IN2U Eau De Toilette Spray",
+    "price": 36.00,
+    "category": "Fragrance",
+    "description": "A fresh and modern fragrance with notes of cocoa, pink grapefruit, and white cedar. For the digitally connected generation.",
+    "image": "perfume.svg"
+  },
+  {
+    "id": 7,
+    "name": "Curls to Straight Shampoo",
+    "price": 12.00,
+    "category": "Hair Care",
+    "description": "Specially formulated shampoo that helps manage curly hair, making it easier to straighten and style.",
+    "image": "shampoo.svg"
+  },
+  {
+    "id": 8,
+    "name": "The Catcher in the Rye",
+    "price": 8.50,
+    "category": "Books",
+    "description": "J.D. Salinger's classic coming-of-age novel following Holden Caulfield's experiences in New York City.",
+    "image": "book.svg"
+  }
+]

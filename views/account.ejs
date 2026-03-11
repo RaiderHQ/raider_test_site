@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<div class="account-page">
+  <h1 class="page-title">My Account</h1>
+
+  <div class="account-welcome">
+    <p>Welcome to your account dashboard. From here you can manage your orders and account details.</p>
+  </div>
+
+  <div class="account-grid">
+    <div class="account-card">
+      <h3>Order History</h3>
+      <p>You have no recent orders.</p>
+    </div>
+    <div class="account-card">
+      <h3>Account Details</h3>
+      <p><strong>Name:</strong> <%= user.name %></p>
+      <p><strong>Username:</strong> <%= user.username %></p>
+    </div>
+    <div class="account-card">
+      <h3>Wishlist</h3>
+      <p>Your wishlist is empty.</p>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
