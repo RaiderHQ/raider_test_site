@@ -25,7 +25,7 @@
             <% } %>
           </div>
           <div class="cart-summary">
-            <a href="#" class="cart-link">Cart: 0 items</a>
+            <a href="/cart" class="cart-link">Cart: <%= cart.reduce((sum, i) => sum + i.quantity, 0) %> item(s)</a>
           </div>
         </div>
       </div>

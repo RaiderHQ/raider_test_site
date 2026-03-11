@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+
+<div class="cart-page">
+  <h1 class="page-title">Shopping Cart</h1>
+
+  <% if (cart.length === 0) { %>
+    <div class="cart-empty">
+      <h2>Your cart is empty</h2>
+      <p>Browse our store and add some products to your cart.</p>
+      <a href="/" class="btn btn-primary">Continue Shopping</a>
+    </div>
+  <% } else { %>
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% cart.forEach(item => { %>
+          <tr>
+            <td class="cart-item-name"><%= item.name %></td>
+            <td class="cart-item-price">$<%= item.price.toFixed(2) %></td>
+            <td><%= item.quantity %></td>
+            <td class="cart-item-price">$<%= (item.price * item.quantity).toFixed(2) %></td>
+            <td>
+              <form method="POST" action="/cart/remove">
+                <input type="hidden" name="product_id" value="<%= item.id %>">
+                <button type="submit" class="cart-remove-btn" title="Remove">Remove</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <div class="cart-total">
+      <div class="cart-total-box">
+        <span class="total-label">Total:</span>
+        <span class="total-price">$<%= cart.reduce((sum, i) => sum + i.price * i.quantity, 0).toFixed(2) %></span>
+      </div>
+    </div>
+
+    <div class="cart-actions">
+      <a href="/" class="btn btn-secondary">Continue Shopping</a>
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>

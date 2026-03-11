@@ -22,9 +22,11 @@ app.use(session({
   cookie: { maxAge: 30 * 60 * 1000 }
 }));
 
-// Make user session available to all views
+// Make user session and cart available to all views
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
+  if (!req.session.cart) req.session.cart = [];
+  res.locals.cart = req.session.cart;
   next();
 });
 
@@ -81,6 +83,46 @@ app.get('/product/:id', (req, res) => {
     return res.status(404).render('404');
   }
   res.render('product', { product });
+});
+
+// Add to cart
+app.post('/cart/add', (req, res) => {
+  const body = req.body || {};
+  const productId = parseInt(body.product_id);
+  const quantity = parseInt(body.quantity) || 1;
+  const product = products.find(p => p.id === productId);
+
+  if (!product) {
+    return res.status(404).render('404');
+  }
+
+  const existing = req.session.cart.find(item => item.id === productId);
+  if (existing) {
+    existing.quantity += quantity;
+  } else {
+    req.session.cart.push({ id: product.id, name: product.name, price: product.price, quantity });
+  }
+
+  const from = body.from || '/';
+  res.redirect(from);
+});
+
+// Remove from cart
+app.post('/cart/remove', (req, res) => {
+  const body = req.body || {};
+  const productId = parseInt(body.product_id);
+  req.session.cart = req.session.cart.filter(item => item.id !== productId);
+  res.redirect('/cart');
+});
+
+// Cart page
+app.get('/cart', (req, res) => {
+  res.render('cart');
+});
+
+// 404 catch-all — must be last
+app.use((req, res) => {
+  res.status(404).render('404');
 });
 
 app.listen(PORT, () => {
