@@ -161,6 +161,17 @@ a:hover { text-decoration: underline; }
 .alert { padding: 12px 16px; border-radius: 4px; margin-bottom: 16px; font-size: 0.9rem; }
 .alert-error { background: #fdeaea; color: #c0392b; border: 1px solid #f5c6cb; }
 
+/* === Register Page === */
+.register-section {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.register-section p { margin-bottom: 20px; color: #666; }
+
 /* === Buttons === */
 .btn {
   display: inline-block;

@@ -5,7 +5,8 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const users = require('./data/users.json');
+// In-memory users array seeded from JSON (no DB — new registrations persist until server restart)
+const users = [...require('./data/users.json')];
 const products = require('./data/products.json');
 
 app.set('view engine', 'ejs');
@@ -19,7 +20,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'raider-test-secret',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 30 * 60 * 1000 }
+  cookie: {} // session cookie — expires when the browser/tab closes
 }));
 
 // Make user session and cart available to all views
@@ -51,6 +52,13 @@ app.get('/index.php', (req, res) => {
     return res.render('login', { error: null });
   }
 
+  if (rt === 'account/create') {
+    if (req.session.user) {
+      return res.redirect('/index.php?rt=account/account');
+    }
+    return res.render('register', { error: null, success: null });
+  }
+
   if (rt === 'account/account') {
     if (!req.session.user) {
       return res.redirect('/index.php?rt=account/login');
@@ -68,7 +76,34 @@ app.get('/index.php', (req, res) => {
 
 // Login POST handler
 app.post('/index.php', (req, res) => {
+  const rt = req.query.rt;
   const body = req.body || {};
+
+  // Registration handler
+  if (rt === 'account/create') {
+    const { firstname, lastname, loginname, password, password_confirm } = body;
+
+    if (!firstname || !lastname || !loginname || !password) {
+      return res.render('register', { error: 'All fields are required.', success: null });
+    }
+
+    if (password !== password_confirm) {
+      return res.render('register', { error: 'Passwords do not match.', success: null });
+    }
+
+    if (users.find(u => u.username === loginname)) {
+      return res.render('register', { error: 'This login name is already taken.', success: null });
+    }
+
+    const newUser = { username: loginname, password, name: `${firstname} ${lastname}` };
+    users.push(newUser);
+
+    // Auto-login after registration
+    req.session.user = { username: newUser.username, name: newUser.name };
+    return res.redirect('/index.php?rt=account/account');
+  }
+
+  // Login handler
   const loginname = body.loginname;
   const password = body.password;
   const user = users.find(u => u.username === loginname && u.password === password);

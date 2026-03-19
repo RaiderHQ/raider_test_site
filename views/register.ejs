@@ -1,0 +1,47 @@
+<%- include('partials/header') %>
+
+<div class="login-page">
+  <div class="register-section">
+    <h1 class="page-title">Create Account</h1>
+    <p>Please fill in the fields below to create a new account.</p>
+
+    <% if (error) { %>
+      <div class="alert alert-error"><%= error %></div>
+    <% } %>
+
+    <% if (success) { %>
+      <div class="alert alert-success"><%= success %></div>
+    <% } %>
+
+    <form id="AccountFrm" method="POST" action="/index.php?rt=account/create">
+      <div class="form-group">
+        <label for="AccountFrm_firstname">First Name</label>
+        <input type="text" id="AccountFrm_firstname" name="firstname" required>
+      </div>
+      <div class="form-group">
+        <label for="AccountFrm_lastname">Last Name</label>
+        <input type="text" id="AccountFrm_lastname" name="lastname" required>
+      </div>
+      <div class="form-group">
+        <label for="AccountFrm_loginname">Login Name</label>
+        <input type="text" id="AccountFrm_loginname" name="loginname" required>
+      </div>
+      <div class="form-group">
+        <label for="AccountFrm_password">Password</label>
+        <input type="password" id="AccountFrm_password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="AccountFrm_confirm">Confirm Password</label>
+        <input type="password" id="AccountFrm_confirm" name="password_confirm" required>
+      </div>
+      <div class="form-actions">
+        <button type="submit" title="Continue" class="btn btn-primary">Continue</button>
+      </div>
+      <div class="form-links">
+        <a href="/index.php?rt=account/login">Already have an account? Login here</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
