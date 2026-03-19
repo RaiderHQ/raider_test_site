@@ -32,7 +32,12 @@ app.use((req, res, next) => {
 
 // Home page
 app.get('/', (req, res) => {
-  res.render('home', { products });
+  const category = req.query.category;
+  if (category) {
+    const filtered = products.filter(p => p.category === category);
+    return res.render('home', { products: filtered, category });
+  }
+  res.render('home', { products, category: null });
 });
 
 // Login page — matches automationteststore.com route

@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<h1 class="page-title">Featured Products</h1>
+<h1 class="page-title"><%= category ? category : 'Featured Products' %></h1>
 
 <div class="product-grid">
   <% products.forEach(product => { %>
